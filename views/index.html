@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+
+    <!-- Theme CSS -->
+    <link href="/assets/css/argon.min.css" rel="stylesheet" />
+
+    <style>
+      .divider {
+        width: 25%;
+        border-bottom: 2px solid #9494ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="mb-4 mt-3">Convert Text to DNA or RNA</h2>
+      <div class="mb-4 divider"></div>
+      <div class="d-flex justify-content-start">
+        <p>DNA</p>
+        <label class="mx-3 custom-toggle">
+          <input type="checkbox" />
+          <span class="custom-toggle-slider rounded-circle"></span>
+        </label>
+        <p>RNA</p>
+      </div>
+
+      <span class="clearfix"></span>
+
+      <hr />
+
+      <div class="mb-5 row">
+        <div class="col-md-6">
+          <form>
+            <textarea
+              class="form-control form-control-alternative"
+              rows="10"
+              placeholder="Enter text to be converted to DNA/RNA..."
+            ></textarea>
+          </form>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
+    </div>
+    <!-- Core -->
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Theme JS -->
+    <script src="/assets/js/argon.min.js"></script>
+  </body>
+</html>
