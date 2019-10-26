@@ -4,10 +4,10 @@ function toASCII(input) {
 }
 
 function toBinary(input) {
-  var result = "";
+  var result = '';
   for (var i = 0; i < input.length; i++) {
-      var bin = input[i].charCodeAt().toString(2);
-      result += Array(8 - bin.length + 1).join("0") + bin;
+    var bin = input[i].charCodeAt().toString(2);
+    result += Array(8 - bin.length + 1).join('0') + bin;
   }
   return result;
 }
@@ -17,4 +17,4 @@ console.log(Binary);
 module.exports = {
   toASCII,
   toBinary
-}
+};
