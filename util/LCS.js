@@ -38,6 +38,8 @@ const findLongestCommonSubstring = (string1, string2) => {
   }
 };
 
+module.exports = findLongestCommonSubstring;
+
 // Test code
 console.log(findLongestCommonSubstring('ababccd', 'abcct'));
 console.log(findLongestCommonSubstring('ababccd', 'ccxaba'));
