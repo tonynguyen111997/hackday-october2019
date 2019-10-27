@@ -1,21 +1,26 @@
-const { toASCII, toBinary } = require('../util/toASCII');
+const convertDNAtoASCII = require('../util/toASCII')['convertDNAToASCII'];
+const convertRNAtoASCII = require('../util/toASCII')['convertRNAToASCII'];
 
-it('Should return a Char', () => {
-  expect(toASCII('A')).toBe(65);
-  expect(toASCII('B')).toBe(66);
-  expect(toBinary('70')).toBe('0011011100110000');
+it('Should return dna letter', () => {
+  expect(convertDNAtoASCII('A')).toBe('GAAG');
+  expect(convertDNAtoASCII('B')).toBe('CAAG');
+  expect(convertDNAtoASCII('Z')).toBe('CCGG');
 });
 
-// it('Should return a word', () => {
-//   expect().toBe('cat');
-//   expect().toBe('CAT');
-//   expect().toBe('dog');
-//   expect().toBe('DOG');
-//   expect().toBe('pizza');
-//   expect().toBe('PIZZA');
-// });
+it('Should return dna result', () => {
+  expect(convertDNAtoASCII('cat')).toBe('AGTGGACGTACG');
+  expect(convertDNAtoASCII('CAT')).toBe('AGGGGAAGTAAG');
+  expect(convertDNAtoASCII('dog')).toBe('TGCGTTCGAGCG');
+  expect(convertDNAtoASCII('DOG')).toBe('TGAGTTAGAGAG');
+  expect(convertDNAtoASCII('pizza')).toBe('GACGCCTGCCTGGCCGAATG');
+  expect(convertDNAtoASCII('PIZZA')).toBe('GAAGCCGGCCGGGCAGAAGG');
+});
 
-// it('Should return a sentence', () => {
-//   expect().toBe('I like pizza');
-//   expect().toBe('Inland Empire Software Development');
-// });
+it('Should return rna result', () => {
+  expect(convertRNAtoASCII('cat')).toBe('AGUGGACGUACG');
+  expect(convertRNAtoASCII('CAT')).toBe('AGGGGAAGUAAG');
+  expect(convertRNAtoASCII('dog')).toBe('UGCGUUCGAGCG');
+  expect(convertRNAtoASCII('DOG')).toBe('UGAGUUAGAGAG');
+  expect(convertRNAtoASCII('pizza')).toBe('GACGCCUGCCUGGCCGAAUG');
+  expect(convertRNAtoASCII('PIZZA')).toBe('GAAGCCGGCCGGGCAGAAGG');
+})
