@@ -19,6 +19,9 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "./views/index.html"));
 });
 
+app.post("/logrequest", (req, res) => {
+  winston.info("Made a post request to /logrequest");
+})
 
 app.listen(PORT, () => {
   winston.info(`Server is running on port ${PORT}`);
