@@ -22,5 +22,6 @@ it('Should return rna result', () => {
   expect(convertRNAtoASCII('dog')).toBe('UGCGUUCGAGCG');
   expect(convertRNAtoASCII('DOG')).toBe('UGAGUUAGAGAG');
   expect(convertRNAtoASCII('pizza')).toBe('GACGCCUGCCUGGCCGAAUG');
-  expect(convertRNAtoASCII('PIZZA')).toBe('GAAGCCGGCCGGGCAGAAGG');
+  expect(convertRNAtoASCII('PIZZA')).toBe('GAAGCCGGCCGGGCAGAAGG'); 
+  
 })
