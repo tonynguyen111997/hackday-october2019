@@ -35,15 +35,24 @@ app.post("/logrequest", (req, res) => {
 app.post("/dna", (req, res) => {
   const { type, string } = req.body;
 
+  let date = new Date();
+  const startTime = date.getTime();
+
   console.log('DNA called!');
   
   if(type === "dna"){
     // Function to send back dna
+
     res.send(convertDNAtoASCII(string));
   } else {
     // Function to send back rna
     res.send(convertRNAtoASCII(string));
   }
+  date = new Date();
+  const endTime = date.getTime();
+
+  winston.info('User string: ' + string);
+  winston.info('Time: ' + (endTime - startTime) + 'ms')
 });
 
 app.listen(PORT, () => {
