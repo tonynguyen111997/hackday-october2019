@@ -45,3 +45,5 @@ console.log(findLongestCommonSubstring('ababccd', 'abcct'));
 console.log(findLongestCommonSubstring('ababccd', 'ccxaba'));
 console.log(findLongestCommonSubstring('fortnite4lyfe', 'lyfe4fortnite'));
 console.log(findLongestCommonSubstring('ababccd', 'zzzz'));
+
+module.exports = { findLongestCommonSubstring };
