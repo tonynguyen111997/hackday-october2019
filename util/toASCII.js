@@ -170,6 +170,36 @@ const convertRNAToASCII = (word) => {
   return DNA(bitsArr);
 }
 
+revertDNA(){
+  / holds binary reverse conversion
+var reverseBin = [];
+// Convert back
+function convertToBinary(str) {
+   console.log(str);
+   for (var i = 0; i < str.length; i++) {
+       reverseBin.push(str[i]);
+       console.log(reverseBin);
+   }
+   for (var i = 0; i < reverseBin.length; i++) {
+       if (reverseBin[i] === 'A') {
+           reverseBin[i] = '00';
+       }
+       else if (reverseBin[i] === 'G') {
+           reverseBin[i] = '01';
+       }
+       else if (reverseBin[i] === 'C') {
+           reverseBin[i] = '10';
+       }
+       else if (reverseBin[i] === 'T') {
+           reverseBin[i] = '11';
+       }
+   }
+   console.log(reverseBin);
+   return reverseBin;
+}
+
+}
+
 module.exports = {
   convertDNAToASCII,
   convertRNAToASCII
