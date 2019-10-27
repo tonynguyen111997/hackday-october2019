@@ -64,6 +64,47 @@
           <p id="result"></p>
         </div>
       </div>
+
+      <hr />
+
+      <!-- Compare -->
+      <div class="mb-5 row">
+        <div class="col-md-6">
+          <form>
+            <textarea
+              id="compare1"
+              class="form-control form-control-alternative"
+              rows="2"
+              placeholder="Enter text to be compared..."
+            ></textarea>
+          </form>
+          <br />
+          <form>
+            <textarea
+              id="compare2"
+              class="form-control form-control-alternative"
+              rows="2"
+              placeholder="Enter text to be compared..."
+            ></textarea>
+          </form>
+          <button
+            class="mt-3 btn btn-primary"
+            id="compare-button"
+            type="button"
+          >
+            Compare
+          </button>
+        </div>
+        <div class="col-md-6" style="word-break: break-word;">
+          First Value: 
+          <p id="result-1"></p>
+          Second Value: 
+          <p id="result-2"></p>
+          LCS Result: 
+          <p id="result-compare"></p>
+        </div>
+      </div>
+      <!-- End Compare-->
     </div>
     <!-- Core -->
     <script
@@ -87,50 +128,92 @@
 
     <!-- Enter conversion string here -->
     <script>
-      var dnarna = "dna";
+      var dnarna = 'dna'
 
-      $("#dna-rna").on("change", function() {
-        if (dnarna === "dna") {
-          dnarna = "rna";
+      $('#dna-rna').on('change', function() {
+        if (dnarna === 'dna') {
+          dnarna = 'rna'
         } else {
-          dnarna = "dna";
+          dnarna = 'dna'
         }
-      });
+      })
     </script>
 
     <!-- Convert function -->
     <script>
-      $("#convert").click(function() {
-        $("#convert").addClass("disabled");
+      $('#convert').click(function() {
+        $('#convert').addClass('disabled')
 
-        var toConvert = $("#dna").val();
+        var toConvert = $('#dna').val()
 
         $.ajax({
-          type: "POST",
-          url: "/dna",
+          type: 'POST',
+          url: '/dna',
           data: {
             type: dnarna,
             string: toConvert
           },
           success: function(response) {
-            $("#result").text(response);
+            $('#result').text(response)
 
-            console.log(toConvert, dnarna);
-            console.log(response);
+            console.log(toConvert, dnarna)
+            console.log(response)
 
-            $("#convert").removeClass("disabled");
+            $('#convert').removeClass('disabled')
+          },
+          error: function(error) {
+            console.log(error)
+
+            $('#result').text(
+              'There was an error converting the string. Please check the console.'
+            )
+
+            $('#convert').removeClass('disabled')
+          }
+        })
+      })
+    </script>
+
+    <!-- Compare function -->
+    <script>
+      $('#compare-button').click(function() {
+        $('#compare-button').addClass('disabled')
+
+        var toCompare1 = $('#compare1').val();
+        var toCompare2 = $('#compare2').val();
+
+        $.ajax({
+          type: 'POST',
+          url: '/compare',
+          data: {
+            type: dnarna,
+            string1: toCompare1,
+            string2: toCompare2
+          },
+          success: function(response) {
+
+            let {result1, result2, compareResult} = response;
+
+            $('#result-1').text(result1);
+            $('#result-2').text(result2);
+            $('#result-compare').text(compareResult);
+
+            console.log('toCompare1: ', toCompare1, 'toCompare2: ', toCompare2, 'dnarna: ', dnarna);
+            console.log('Response: ', response);
+
+            $('#compare-button').removeClass('disabled');
           },
           error: function(error) {
             console.log(error);
 
-            $("#result").text(
-              "There was an error converting the string. Please check the console."
+            $('#result-compare').text(
+              'There was an error converting the string. Please check the console.'
             );
 
-            $("#convert").removeClass("disabled");
+            $('#compare-button').removeClass('disabled');
           }
-        });
-      });
+        })
+      })
     </script>
   </body>
 </html>
