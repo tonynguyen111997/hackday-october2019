@@ -28,7 +28,10 @@ app.post("/logrequest", (req, res) => {
 
 // Route for encoding arbitrary standard ASCII code to DNA/RNA
 app.post("/dna", (req, res) => {
-  const { type } = req.body;
+  const { type, string } = req.body;
+
+  console.log('DNA called!');
+  
   if(type === "dna"){
     // Function to send back dna
     res.send('dna info')
