@@ -10,6 +10,8 @@ const winston = require("./config/winston");
 const convertDNAtoASCII = require('./util/toASCII')['convertDNAToASCII'];
 const convertRNAtoASCII = require('./util/toASCII')['convertRNAToASCII'];
 
+const lcs = require('./util/LCS')['findLongestCommonSubstring'];
+
 const app = express();
 
 // Server port number
@@ -23,7 +25,7 @@ app.use(morgan("combined", { stream: winston.stream }));
 app.use(express.static("views"));
 
 // Route to serve landing page
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./views/index.html"));
 });
 
@@ -39,10 +41,10 @@ app.post("/dna", (req, res) => {
   const startTime = date.getTime();
 
   console.log('DNA called!');
-  
-  if(type === "dna"){
-    // Function to send back dna
 
+  if (type === "dna") {
+    // Function to send back dna
+    //console.log("asdasdadasdasda: ", convertDNAtoASCII(string));
     res.send(convertDNAtoASCII(string));
   } else {
     // Function to send back rna
@@ -53,6 +55,27 @@ app.post("/dna", (req, res) => {
 
   winston.info('User string: ' + string);
   winston.info('Time: ' + (endTime - startTime) + 'ms')
+});
+
+// Route for comparing DNA/RNA strings
+app.post("/compare", (req, res) => {
+  const { type, string1, string2 } = req.body;
+
+  console.log('DNA called!');
+
+  if (type === "dna") {
+    // Function to send back dna
+    const result1 = convertDNAtoASCII(string1);
+    const result2 = convertDNAtoASCII(string2);
+    const compareResult = lcs(result1, result2);
+
+    const results = {result1, result2, compareResult};
+
+    res.send(results);
+  } else {
+    // Function to send back rna
+    res.send(convertRNAtoASCII(string2));
+  }
 });
 
 app.listen(PORT, () => {
