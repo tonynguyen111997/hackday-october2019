@@ -16,6 +16,7 @@ const transport = new (winston.transports.DailyRotateFile)({
   timestamp
 });
 
+// Configuration for transport console option
 const console = {
   handleExceptions: true,
   json: false,
