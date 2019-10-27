@@ -5,6 +5,11 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const winston = require("./config/winston");
 
+// import util
+// const { convertDNAtoASCII, convertRNAtoASCII } = require('./util/toASCII');
+const convertDNAtoASCII = require('./util/toASCII')['convertDNAToASCII'];
+const convertRNAtoASCII = require('./util/toASCII')['convertRNAToASCII'];
+
 const app = express();
 
 // Server port number
@@ -34,10 +39,10 @@ app.post("/dna", (req, res) => {
   
   if(type === "dna"){
     // Function to send back dna
-    res.send('dna info')
+    res.send(convertDNAtoASCII(string));
   } else {
     // Function to send back rna
-    res.send('rna info');
+    res.send(convertRNAtoASCII(string));
   }
 });
 
