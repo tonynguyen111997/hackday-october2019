@@ -16,10 +16,17 @@ const transport = new (winston.transports.DailyRotateFile)({
   timestamp
 });
 
+const console = {
+  handleExceptions: true,
+  json: false,
+  colorize: true,
+}
+
 // instantiate a new Winston Logger with the settings defined above
 const logger = winston.createLogger({
   transports: [
-    transport
+    transport,
+    new winston.transports.Console(console)
   ],
   exitOnError: false, // do not exit on handled exceptions
   format: format.combine(
